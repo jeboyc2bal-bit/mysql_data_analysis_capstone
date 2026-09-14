@@ -4,22 +4,22 @@ use olist;
 select * from orders;
 select * from order_items;
 
-WITH monthly_revenue AS (
-    SELECT
-        DATE_FORMAT(opt.order_purchase_timestamp, '%Y-%m-01') AS month,
-        SUM(p.price) AS total_revenue
-    FROM orders opt
-    JOIN order_items p ON p.order_id = opt.order_id
-    GROUP BY month
+with monthly_revenue as (
+    select
+        data_format(opt.order_purchase_timestamp, '%Y-%m-01') as month,
+        sum(p.price) as total_revenue
+    from orders opt
+    join order_items p on p.order_id = opt.order_id
+    group by month
 )
-SELECT
+select
     month,
     total_revenue,
-    LAG(total_revenue) OVER (ORDER BY month) AS prev_month_revenue,
-    total_revenue - LAG(total_revenue) OVER (ORDER BY month) AS mom_change,
-    ROUND(
-        (total_revenue - LAG(total_revenue) OVER (ORDER BY month))
-        / nullif(LAG(total_revenue) OVER (ORDER BY month), 0 ) * 100
-    , 2) AS mom_percent_change
-FROM monthly_revenue
-ORDER BY month;
+    lag(total_revenue) over (order by month) as prev_month_revenue,
+    total_revenue - lag(total_revenue) over (order by month) as mom_change,
+    round(
+        (total_revenue - lag(total_revenue) over (order by month))
+        / nullif(lag(total_revenue) over (order by month), 0 ) * 100
+    , 2) as mom_percent_change
+from monthly_revenue
+order by month;
