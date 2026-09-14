@@ -4,10 +4,10 @@ use olist;
 select * from order_items;
 select * from orders;
 select
-    date_format(o.order_purchase_timestamp, '%Y-%m-01') AS month,
-    sum(oi.price) AS total_revenue,
-    count(o.order_id) AS order_count
-FROM orders o
-JOIN order_items oi ON oi.order_id = o.order_id
-GROUP BY month
-ORDER BY month desc;
+    date_format(o.order_purchase_timestamp, '%Y-%m-01') as month,
+    sum(oi.price) as total_revenue,
+    count(o.order_id) as order_count
+from orders o
+join order_items oi on oi.order_id = o.order_id
+group by month
+order by month desc;
