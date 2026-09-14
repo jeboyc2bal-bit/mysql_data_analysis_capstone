@@ -1,3 +1,5 @@
+-- What percent of total revenue comes from the top category?
+
 use olist;
 
 select * from order_items;
