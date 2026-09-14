@@ -1,6 +1,6 @@
 -- What is the monthly revenue trend across the dataset?
 -- Arranged by month Date Arranged to YYYY-MM-DD (as indicated in timestamp)
-
+use olist;
 select * from order_items;
 select * from orders;
 select
