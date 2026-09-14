@@ -1,5 +1,6 @@
 -- What is the month-over-month change in revenue?
 -- Using the previous Monthly revenue Trend for the MOM (Month-over-month) change
+use olist;
 select * from orders;
 select * from order_items;
 
