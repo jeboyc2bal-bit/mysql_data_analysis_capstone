@@ -1,4 +1,5 @@
 -- Which product categories generate the most revenue?
+use olist;
 select * from orders;
 select * from products;
 
